@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Django Project</h1>
+    <p>This is the home page content.</p>
+
+    <div class="todo-container">
+        {% for todo in todos %}
+            <div class="todo-item">
+                <h2>{{ todo.title }}</h2>
+                <p>{{ todo.body }}</p>
+                <p>Created: {{ todo.created }}</p>
+                <p>Completed: {% if todo.completed %}Yes{% else %}No{% endif %}</p>
+                <a href="{% url 'delTodo' todo.pk %}">Delete</a>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'addTodo' %}">Add Todo</a>
+{% endblock %}
